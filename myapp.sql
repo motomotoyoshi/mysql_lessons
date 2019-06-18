@@ -19,7 +19,8 @@ insert into users (name, score) values ('sorafa', 9.7);
 insert into users (name, score) values ('aka', null);
 insert into users (name, score) values ('aipon', 8.0);
 insert into users (name, score) values ('imo', 1.1);
+insert into users (name, score) values ('seto', 7.1);
 
--- select * from users where name like 'a%';
--- select * from users where name like '%a%';
-select * from users where name like '%p_';
+-- select * from users where score is not null order by score desc;
+-- select * from users limit 3 offset 2;
+select * from users where score is not null order by score desc limit 3
