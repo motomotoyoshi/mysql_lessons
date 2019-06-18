@@ -21,9 +21,13 @@ insert into users (name, score) values ('aipon', 8.0);
 insert into users (name, score) values ('imo', 1.1);
 insert into users (name, score) values ('seto', 7.1);
 
-update users set score = 9.9 where id = 1;
-update users set name = 'udon', score = 6.1 where name = 'seto';
+-- update users set score = score * 1.2 where id % 2 = 0;
 
-delete from users where score < 6.0;
+-- select round(6.122);
+-- select round(6.122, 1);
+-- select floor(6.122);
+-- select ceil(6.122);
+-- select rand();
 
+select * from users order by rand() limit 3;
 select * from users;
