@@ -21,6 +21,9 @@ insert into users (name, score) values ('aipon', 8.0);
 insert into users (name, score) values ('imo', 1.1);
 insert into users (name, score) values ('seto', 7.1);
 
--- select * from users where score is not null order by score desc;
--- select * from users limit 3 offset 2;
-select * from users where score is not null order by score desc limit 3
+update users set score = 9.9 where id = 1;
+update users set name = 'udon', score = 6.1 where name = 'seto';
+
+delete from users where score < 6.0;
+
+select * from users;
