@@ -1,5 +1,4 @@
 drop table if exists users;
-drop table if exists users_with_team;
 create table users(
   id int unsigned primary key auto_increment,
   name varchar(20) unique,
@@ -19,24 +18,30 @@ insert into users (name, score) values ('myq', 4.1);
 insert into users (name, score) values ('sorafa', 9.7);
 insert into users (name, score) values ('aka', null);
 
--- create table users_with_team as
--- select
---   id,
---   name,
---   score,
---   case 
---     when score > 8.0 then 'Team-A'
---     when score > 6.0 then 'Team-B'
---     else 'Team-C'
---   end as Team
--- from
---   users;
--- 
+drop table if exists users_with_team;
+create table users_with_team as
+select
+  id,
+  name,
+  score,
+  case 
+    when score > 8.0 then 'Team-A'
+    when score > 6.0 then 'Team-B'
+    else 'Team-C'
+  end as Team
+from
+  users;
+
 -- select * from users_with_team;
+-- select count(score) from users_with_team;
+-- select count(id) from users_with_team;
+-- select count(*) from users_with_team;
 
--- create table users_copy select * from users;
--- select * from users_copy;
+-- select sum(score) from users_with_team;
+-- select min(score) from users_with_team;
+-- select max(score) from users_with_team;
+-- select avg(score) from users_with_team;
 
-create table users_empty like users;
-desc users_empty;
-select * from users_empty;
+-- select distinct team from users_with_team;
+
+select count(distinct team) from users_with_team;
