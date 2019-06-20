@@ -19,21 +19,32 @@ insert into users (name, score) values ('sorafa', 19.7);
 insert into users (name, score) values ('aka', null);
 
 drop table if exists users_with_team;
-create table users_with_team as
-select
-  id,
-  name,
-  score,
-  case 
-    when score > 8.0 then 'Team-A'
-    when score > 6.0 then 'Team-B'
-    else 'Team-C'
-  end as team
-from
-  users;
+-- create table users_with_team as
+-- select
+--   id,
+--   name,
+--   score,
+--   case 
+--     when score > 8.0 then 'Team-A'
+--     when score > 6.0 then 'Team-B'
+--     else 'Team-C'
+--   end as team
+-- from  users;
 
 -- select * from users_with_team;
 
--- select sum(score), team from users_with_team group by team;
--- select sum(score), team from users_with_team group by team desc;
-select sum(score), team from users_with_team group by team desc having sum(score) > 10.0;
+select
+  sum(t.score), 
+  t.team
+from
+  ( select
+      id,
+      name,
+      score,
+      case 
+        when score > 8.0 then 'Team-A'
+        when score > 6.0 then 'Team-B'
+        else 'Team-C'
+      end as team
+    from  users ) as t
+group by t.team;
