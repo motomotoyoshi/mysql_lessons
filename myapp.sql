@@ -12,15 +12,15 @@ desc users;
 --   (2, 'myq', 4.1),
 --   (3, 'sorafa', 9.7),
 --   (4, 'aka', null);
-insert into users (name, score) values ('okipo', 6.8);
-insert into users (name, score) values ('myq', 4.1);
-insert into users (name, score) values ('sorafa', 39.7);
-insert into users (name, score) values ('aka', null);
+-- insert into users (name, score) values ('okipo', 6.8);
+-- insert into users (name, score) values ('myq', 4.1);
+-- insert into users (name, score) values ('sorafa', 39.7);
+-- insert into users (name, score) values ('aka', null);
 
-start transaction;
-update users set score = score - 30.0 where name = 'sorafa';
-update users set score = score + 30.0 where name = 'okipo';
--- commit;
-rollback;
+alter table users add index index_score (score);
+-- show index from users;
+-- explain select * from users where score > 4.0;
+-- explain select * from users where name = 'myq';
 
-select * from users;
+alter table users drop index index_score;
+show index from users;
