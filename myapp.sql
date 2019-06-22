@@ -1,26 +1,24 @@
-drop table if exists users;
-create table users(
+drop table if exists posts;
+create table posts (
   id int unsigned primary key auto_increment,
-  name varchar(20) unique,
-  score float default 0.0
+  title varchar(255),
+  body text
+);
+drop table if exists comments;
+create table comments (
+  id int unsigned primary key auto_increment,
+  post_id int not null,
+  body text
 );
 
-desc users;
+insert into posts (title, body) values ('title 1', 'body 1');
+insert into posts (title, body) values ('title 2', 'body 2');
+insert into posts (title, body) values ('title 3', 'body 3');
 
--- insert into users (id, name, score) values
---   (1, 'okipo', 5.8),
---   (2, 'myq', 4.1),
---   (3, 'sorafa', 9.7),
---   (4, 'aka', null);
--- insert into users (name, score) values ('okipo', 6.8);
--- insert into users (name, score) values ('myq', 4.1);
--- insert into users (name, score) values ('sorafa', 39.7);
--- insert into users (name, score) values ('aka', null);
+insert into comments (post_id, body) values (1, 'first comments for post 1');
+insert into comments (post_id, body) values (1, 'second comments for post 1');
+insert into comments (post_id, body) values (3, 'first comments for post 3');
+insert into comments (post_id, body) values (4, 'first comments for post 4');
 
-alter table users add index index_score (score);
--- show index from users;
--- explain select * from users where score > 4.0;
--- explain select * from users where name = 'myq';
-
-alter table users drop index index_score;
-show index from users;
+select * from posts;
+select * from comments;
